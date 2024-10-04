@@ -11,8 +11,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'app/img/favicon.png' %}" rel="icon">
-  <link href="{% static 'app/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="/media/imagenes/logo.png" rel="icon">
+  <link href="/media/imagenes/logo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -38,13 +38,10 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">SOLUCIONES DTEAM</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="app/img/logo.png" alt="" class="img-fluid"></a>-->
+      <h1 class="logo me-auto"><a class="nav-link scrollto" href="#hero">SOLUCIONES DTEAM</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
           <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
           <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
           <li><a class="nav-link   scrollto" href="#portfolio">Ejemplos</a></li>
@@ -52,15 +49,6 @@
           <li class="dropdown"><a href="#"><span>Enlaces externos</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="http://www.geic.cu/">GEIC</a></li>
-              <li class="dropdown"><a href="#"><span>Redes Sociales</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="https://www.facebook.com/SolucionesDTeam">Facebook</a></li>
-                  <li><a href="https://www.instagram.com/solucionesdteam/">Instagram</a></li>
-                  <li><a href="https://x.com/DesoftSsp">X</a></li>
-                  <li><a href="https://chat.whatsapp.com/GXwpDNRWs1F6NOM1Z2fzbc">Grupo de WhatsApp</a></li>
-                  <li><a href="https://t.me/clientesDesoftSSP">Telegram</a></li>
-                </ul>
-              </li>
               <li><a href="https://www.uic.cu/">Union de informáticos de Cuba</a></li>
               <li><a href="https://www.mincom.gob.cu/">Ministerio de comunicaciones</a></li>
               <li><a href="https://www.entumovil.cu/">entuMovil</a></li>
@@ -85,49 +73,15 @@
     <div class="footer-top">
       <div class="container">
         <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>SOLUCIONES DTEAM</h3>
-            <p>
-              Calle Máximo Gómez número 171, entre Frank País y Silvestre Alonso <br>
-              municipio y provincia de Sancti Spíritus<br>
-              CUBA <br><br>
-              <strong>Teléfono móvil:</strong> 52131478<br>
-              <strong>Teléfono fijo:</strong> 41 327273<br>
-              <strong>Correo Electrónico:</strong> negocios.ssp@desoft.cu<br>
-            </p>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Links de ayuda</h4>
-            <ul>
-              <li><a href="https://www.uic.cu/">Union de informáticos de Cuba</a></li>
-              <li><a href="https://www.mincom.gob.cu/">Ministerio de comunicaciones</a></li>
-              <li><a href="https://www.entumovil.cu/">entuMovil</a></li>
-              <li><a href="https://www.desoft.cu/es">Desoft Nacional</a></li>
-              <li><a href="http://www.geic.cu/">GEIC</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Redes Sociales</h4>
-            <p>Síguenos en nuestras redes sociales para no perderte ni un detalle.</p>
-            <div class="social-links mt-3">
-              <a href="https://x.com/DesoftSsp" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="https://www.facebook.com/SolucionesDTeam" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="https://www.instagram.com/solucionesdteam/" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="https://t.me/clientesDesoftSSP" class="telegram"><i class="bx bxl-telegram"></i></a>
-              <a href="https://chat.whatsapp.com/GXwpDNRWs1F6NOM1Z2fzbc"><i class="bx bxl-whatsapp"></i></a></a>
-            </div>
-          </div>
-
+          {% block links %}
+          {% endblock links %}
         </div>
       </div>
     </div>
 
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>SOLUCIONES DTEAM</span></strong>. Todos los derechos reservados.
+        &copy; 2024 Copyright <strong><span>SOLUCIONES DTEAM</span></strong>. Todos los derechos reservados.
       </div>
       <div class="credits">
         Desarrollado por: <a href="https://t.me/Osliany">Osliany Figueiras</a>

@@ -1,17 +1,22 @@
 from django.db import models
 
 class SobreNosotros(models.Model):
-    parrafo = models.TextField(null=False)
+    parrafo = models.TextField()
+    parrafo2 = models.TextField(null=True, blank=True)
+    check1 = models.CharField(max_length=255, null=True, blank=True)
+    check2 = models.CharField(max_length=255, null=True, blank=True)
+    check3 = models.CharField(max_length=255, null=True, blank=True)
     documento = models.FileField(upload_to='documentos')
+    documento_dir = models.CharField(max_length=255, default='/media/documentos/datos.doc')
     activo = models.BooleanField(default=True)
 
     def __str__(self):
-        return "Sobre nosotros"
+        return self.parrafo[:50]
 
 
 class Potencialidad(models.Model):
-    nombre = models.CharField(max_length=255, null=False)
-    descripcion = models.TextField(null=False)
+    nombre = models.CharField(max_length=255)
+    descripcion = models.TextField()
     activo = models.BooleanField(default=True)
 
     def __str__(self):
@@ -19,8 +24,8 @@ class Potencialidad(models.Model):
 
 
 class Skill(models.Model):
-    nombre = models.CharField(max_length=255, null=False)
-    porcentaje = models.IntegerField(null=False)
+    nombre = models.CharField(max_length=255)
+    porcentaje = models.IntegerField()
     activo = models.BooleanField(default=True)
 
     def __str__(self):
@@ -28,20 +33,22 @@ class Skill(models.Model):
     
 
 class Categoria(models.Model):
-    nombre = models.CharField(max_length=255, null=False)
-    abreviatura = models.CharField(max_length=255, null=False)
-    descripcion = models.TextField(null=False)
+    nombre = models.CharField(max_length=255)
+    abreviatura = models.CharField(max_length=255)
+    descripcion = models.TextField()
     activo = models.BooleanField(default=True)
+    clase = models.CharField(max_length=255, default='fas fa-cloud')
     
     def __str__(self):
         return self.nombre
     
     
 class Servicio(models.Model):
-    nombre = models.CharField(max_length=255, null=False)
-    descripcion = models.TextField(null=False)
+    nombre = models.CharField(max_length=255)
+    descripcion = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='imagenes/servicios', null=True, blank=True)
+    imagen_dir = models.CharField(max_length=255, default='media/imagenes/servicios/nombre.jpg')
     activo = models.BooleanField(default=True)
 
     def __str__(self):
@@ -50,21 +57,23 @@ class Servicio(models.Model):
 
 class Equipo(models.Model):
     imagen = models.ImageField(upload_to='imagenes/equipo')
-    nombre = models.CharField(max_length=255, null=False)
-    apellido = models.CharField(max_length=255)
-    cargo = models.CharField(max_length=255)
+    imagen_dir = models.CharField(max_length=255, default='/media/imagenes/equipo/nombre.jpg')
+    nombre = models.CharField(max_length=255)
+    apellido = models.CharField(max_length=255, null=True, blank=True)
+    cargo = models.CharField(max_length=255, null=True, blank=True)
     evento = models.CharField(max_length=255)
     fecha = models.DateField()
-    fuente = models.CharField(max_length=255)
+    link = models.URLField(max_length=200, null=True, blank=True)
+    fuente = models.CharField(max_length=255, null=True, blank=True)
     activo = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.nombre} {self.apellido}"
+        return f"{self.nombre}"
 
 
 class PreguntaFrecuente(models.Model):
-    pregunta = models.CharField(max_length=255, null=False)
-    respuesta = models.TextField(null=False)
+    pregunta = models.CharField(max_length=255)
+    respuesta = models.TextField()
     activo = models.BooleanField(default=True)
 
     def __str__(self):
@@ -72,8 +81,9 @@ class PreguntaFrecuente(models.Model):
     
 
 class Link(models.Model):
-    nombre = models.CharField(max_length=255, null=False)
-    link = models.URLField(null=False)
+    nombre = models.CharField(max_length=255)
+    link = models.URLField()
+    clase = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.nombre
@@ -89,7 +99,7 @@ class Contacto(models.Model):
     activo = models.BooleanField(default=True)
 
     def __str__(self):
-        return "Contacto"
+        return self.correo
 
 
 class Conversacion(models.Model):
@@ -113,4 +123,24 @@ class Mensaje(models.Model):
 
     def __str__(self):
         return f'Mensaje de {self.enviado_por} en conversación {self.conversacion.id}'
+
+
+class Catalogo(models.Model):
+    nombre = models.CharField(max_length=255)
+    activo = models.BooleanField(default=True)
+    
+    hero = models.ImageField(upload_to='imagenes/index')
+    hero_dir = models.CharField(max_length=255, default='/media/imagenes/index/hero.jpg')
+    
+    why_us = models.ImageField(upload_to='imagenes/index')
+    why_us_dir = models.CharField(max_length=255, default='/media/imagenes/index/why_us.jpg')
+    
+    skills = models.ImageField(upload_to='imagenes/index')
+    skills_dir = models.CharField(max_length=255, default='/media/imagenes/index/skills.jpg')
+    
+    action = models.ImageField(upload_to='imagenes/index')
+    action_dir = models.CharField(max_length=255, default='/media/imagenes/index/action.jpg')
+    
+    def __str__(self):
+        return self.nombre
   
