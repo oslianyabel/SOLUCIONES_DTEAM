@@ -7,7 +7,6 @@ class SobreNosotros(models.Model):
     check2 = models.CharField(max_length=255, null=True, blank=True)
     check3 = models.CharField(max_length=255, null=True, blank=True)
     documento = models.FileField(upload_to='documentos')
-    documento_dir = models.CharField(max_length=255, default='/media/documentos/datos.doc')
     activo = models.BooleanField(default=True)
 
     def __str__(self):
@@ -48,7 +47,6 @@ class Servicio(models.Model):
     descripcion = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='imagenes/servicios', null=True, blank=True)
-    imagen_dir = models.CharField(max_length=255, default='media/imagenes/servicios/nombre.jpg')
     activo = models.BooleanField(default=True)
 
     def __str__(self):
@@ -57,7 +55,6 @@ class Servicio(models.Model):
 
 class Equipo(models.Model):
     imagen = models.ImageField(upload_to='imagenes/equipo')
-    imagen_dir = models.CharField(max_length=255, default='/media/imagenes/equipo/nombre.jpg')
     nombre = models.CharField(max_length=255)
     apellido = models.CharField(max_length=255, null=True, blank=True)
     cargo = models.CharField(max_length=255, null=True, blank=True)
@@ -128,18 +125,11 @@ class Mensaje(models.Model):
 class Catalogo(models.Model):
     nombre = models.CharField(max_length=255)
     activo = models.BooleanField(default=True)
-    
     hero = models.ImageField(upload_to='imagenes/index')
-    hero_dir = models.CharField(max_length=255, default='/media/imagenes/index/hero.jpg')
-    
     why_us = models.ImageField(upload_to='imagenes/index')
-    why_us_dir = models.CharField(max_length=255, default='/media/imagenes/index/why_us.jpg')
-    
     skills = models.ImageField(upload_to='imagenes/index')
-    skills_dir = models.CharField(max_length=255, default='/media/imagenes/index/skills.jpg')
-    
     action = models.ImageField(upload_to='imagenes/index')
-    action_dir = models.CharField(max_length=255, default='/media/imagenes/index/action.jpg')
+    logo = models.ImageField(upload_to='imagenes/index', null=True, blank=True)
     
     def __str__(self):
         return self.nombre

@@ -6,6 +6,7 @@ from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('services/<int:cat>', views.servicios, name='servicios'),
     path('', views.index, name='index'),
 ]
 

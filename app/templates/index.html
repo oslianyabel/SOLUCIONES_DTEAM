@@ -1,4 +1,27 @@
 {% extends 'base.html' %}
+
+{% block logo %}
+  <link href={{catalogo.logo.url}} rel="icon">
+  <link href={{catalogo.logo.url}} rel="apple-touch-icon">
+{% endblock logo %}
+
+{% block nav_items %}
+<li><a class="nav-link scrollto" href="#services">Servicios <i class="fas fa-tools"></i></a></li>
+<li><a class="nav-link scrollto" href="#portfolio">Muestras <i class="fas fa-images"></i></a></li>
+<li><a class="nav-link scrollto" href="#team">Personal <i class="fas fa-users"></i></a></li>
+<li class="dropdown"><a class="nav-link scrollto" href="#footer"><span>Enlaces externos </span> <i class="bi bi-chevron-down"></i></a>
+  <ul>
+    <li><a href="http://www.geic.cu/">GEIC</a></li>
+    <li><a href="https://www.uic.cu/">Union de informáticos de Cuba</a></li>
+    <li><a href="https://www.mincom.gob.cu/">Ministerio de comunicaciones</a></li>
+    <li><a href="https://www.entumovil.cu/">entuMovil</a></li>
+    <li><a href="https://www.desoft.cu/es">Desoft Nacional</a></li>
+  </ul>
+</li>
+<li><a class="nav-link scrollto" href="#contact">Ubicación <i class="fas fa-map-marker-alt"></i></a></li>
+<li><a class="nav-link scrollto" href="#about">ChatBot <i class="fas fa-robot" style="font-size: 22px;"></i></a></li>
+{% endblock nav_items %}
+
 {% block content %}
 {% load static %}
 
@@ -11,11 +34,11 @@
           <h1>Creamos soluciones informáticas</h1>
           <h2>Nos ajustamos a las necesidades de cada empresa</h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="#about" class="btn-get-started scrollto">Comencemos</a>
+            <a href="#about" class="btn-get-started scrollto">Solicítanos!</a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src={{catalogo.hero_dir}} class="img-fluid animated" alt="">
+          <img src={{catalogo.hero.url}} class="img-fluid animated" alt="">
         </div>
       </div>
     </div>
@@ -29,7 +52,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Sobre Nosotros</h2>
+          <h2>¿Quiénes Somos?</h2>
         </div>
 
         <div class="row content">
@@ -47,7 +70,7 @@
               {{ sobre_nosotros.parrafo2 }}
             </p>
             </p>
-            <a href={{ sobre_nosotros.documento_dir }} class="btn-learn-more" download="SOLUCIONES_DTEAM.doc">Ver Más</a>
+            <a href={{ sobre_nosotros.documento.url }} class="btn-learn-more" download="SOLUCIONES_DTEAM.doc">Ver Más</a>
           </div>
         </div>
 
@@ -73,8 +96,8 @@
               <ul>
               {% for pot in potencialidades %}
                 <li>
-                  <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-{{ forloop.counter }}"><span>01</span> {{pot.nombre}} <i class="bx bx-chevron-down icon-close"></i><i class="bx bx-chevron-up icon-show"></i></a>
-                  <div id="accordion-list-{{ forloop.counter }}" class="collapse" data-bs-parent=".accordion-list">
+                  <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#accordion-list-{{forloop.counter}}"><span>0{{forloop.counter}}</span> {{pot.nombre}} <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                  <div id="accordion-list-{{forloop.counter}}" class="collapse" data-bs-parent=".accordion-list">
                     <p>
                       {{pot.descripcion}}
                     </p>
@@ -86,7 +109,7 @@
 
           </div>
 
-          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url({{catalogo.why_us_dir}});' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url({{catalogo.why_us.url}});' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
 
         </div>
 
@@ -99,7 +122,7 @@
 
         <div class="row">
           <div class="col-lg-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="100">
-            <img src={{catalogo.skills_dir}} class="img-fluid" alt="">
+            <img src={{catalogo.skills.url}} class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">
             <h3>Profesionales con años de experiencia a su disposición.</h3>
@@ -132,14 +155,14 @@
         </div>
 
         <div class="row">
-        {% for cat in categorias %}  
-          <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="{{cat.clase}}"></i></div>
-              <h4><a href="">{{cat.nombre}}</a></h4>
-              <p>{{cat.descripcion}}</p>
-            </div>
+        {% for cat in categorias %}
+        <div class="col-xl-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+          <div class="icon-box">
+            <div class="icon"><i class="{{cat.clase}}"></i></div>
+            <h4><a href="{% url 'servicios' cat.id %}">{{cat.nombre}}</a></h4>
+            <p>{{cat.descripcion}}</p>
           </div>
+        </div>
         {% endfor %}
         </div>
 
@@ -147,7 +170,7 @@
     </section><!-- End Services Section -->
 
     <!-- ======= Cta Section ======= -->
-    <section id="cta" class="cta" style="background-image: linear-gradient(rgba(41, 62, 97, 0.9), rgba(41, 62, 97, 0.9)), url({{catalogo.action_dir}}); background-size: cover; background-position: center;">
+    <section id="cta" class="cta" style="background-image: linear-gradient(rgba(41, 62, 97, 0.9), rgba(41, 62, 97, 0.9)), url({{catalogo.action.url}}); background-size: cover; background-position: center;">
       <div class="container" data-aos="zoom-in">
         
         <div class="row">
@@ -168,8 +191,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Algunos ejemplos</h2>
-          <p></p>
+          <h2>Muestras de lo que hacemos</h2>
+          <p>Algunos ejemplos de servicios de nuestra cartera.</p>
         </div>
 
         <ul id="portfolio-flters" class="d-flex justify-content-center flex-wrap" data-aos="fade-up" data-aos-delay="100">
@@ -182,11 +205,11 @@
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
         {% for ej in ejemplos %}
           <div class="col-lg-4 col-md-6 portfolio-item filter-{{ej.categoria.abreviatura}}">
-            <div class="portfolio-img"><img src={{ej.imagen_dir}} class="img-fluid" alt=""></div>
+            <div class="portfolio-img"><img src={{ej.imagen.url}} class="img-fluid" alt=""></div>
             <div class="portfolio-info">
               <h4>{{ej.nombre}}</h4>
               <p>{{ej.categoria}}</p>
-              <a href={{ej.imagen_dir}} data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{ej.nombre}}"><i class="bx bx-plus"></i></a>
+              <a href={{ej.imagen.url}} data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{ej.nombre}}"><i class="bx bx-plus"></i></a>
             </div>
           </div>
         {% endfor %}
@@ -208,7 +231,7 @@
         {% for t in team %}
           <div class="col-lg-6 mt-4">
             <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
-              <div class="pic"><img src={{t.imagen_dir}} class="img-fluid" alt={{t.evento}}></div>
+              <div class="pic"><img src={{t.imagen.url}} class="img-fluid" alt={{t.evento}}></div>
               <div class="member-info">
                 <h4>{{t.nombre}}{% if t.apellido %} {{t.apellido}} {% endif %}</h4>
                 {% if t.cargo %}<span>{{t.cargo}}</span>{% endif %}
@@ -239,8 +262,8 @@
           <ul>
           {% for p in preguntas %}  
             <li data-aos="fade-up" data-aos-delay="100">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#faq-list-1">{{p.pregunta}}<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-              <div id="faq-list-1" class="collapse" data-bs-parent=".faq-list">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#faq-list-{{forloop.counter}}">{{p.pregunta}}<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-{{forloop.counter}}" class="collapse" data-bs-parent=".faq-list">
                 <p>
                   {{p.respuesta}}
                 </p>
@@ -273,22 +296,22 @@
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  {% endblock %}
+{% endblock content %}
 
-  {% block links %}
+{% block links %}
 
   <div class="col-lg-3 col-md-6 footer-contact">
-    <h3>SOLUCIONES DTEAM</h3>
+    <h3><i class="fa fa-building"></i> SOLUCIONES DTEAM</h3>
     <p>
       {{contacto.direccion}} <br><br>
-      <strong>Teléfono móvil:</strong> {{contacto.telefono_movil}}<br>
-      <strong>Teléfono fijo:</strong> {{contacto.telefono_fijo}}<br>
-      <strong>Correo Electrónico:</strong> {{contacto.correo}}<br>
+      <strong><i class="fa fa-mobile"></i> Teléfono móvil:</strong> {{contacto.telefono_movil}}<br>
+      <strong><i class="fa fa-phone"></i> Teléfono fijo:</strong> {{contacto.telefono_fijo}}<br>
+      <strong><i class="fa fa-envelope"></i> Email:</strong> {{contacto.correo}}<br>
     </p>
   </div>
 
   <div class="col-lg-3 col-md-6 footer-links">
-    <h4>Enlaces Externos</h4>
+    <h4>Enlaces Externos <i class="fa fa-external-link"></i></h4>
     <ul>
     {% for link in contacto.links_de_ayuda.all %}  
       <li><a href={{link.link}}>{{link.nombre}}</a></li>
@@ -297,8 +320,8 @@
   </div>
 
   <div class="col-lg-3 col-md-6 footer-links">
-    <h4>Redes Sociales</h4>
-    <p>Síguenos en nuestras redes sociales para no perderte ni un detalle.</p>
+    <h4>Redes Sociales <i class="fa fa-link"></i></h4>
+    <p>Síguenos en nuestras redes sociales para no perderte ni un detalle ;)</p>
     <div class="social-links mt-3">
     {% for red in contacto.redes_sociales.all %}
       <a href={{red.link}} class="{{red.clase}}"><i class="bx bxl-{{red.clase}}"></i></a>
@@ -306,4 +329,4 @@
     </div>
   </div>
 
-  {% endblock links %}
+{% endblock links %}

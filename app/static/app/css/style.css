@@ -1,16 +1,8 @@
-/**
-* Template Name: Arsha - v4.3.0
-* Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: ADLaM Display, Ubuntu !important;
+  font-weight: 400;
   color: #444444;
+  background-color:#F3F5FA;
 }
 
 a {

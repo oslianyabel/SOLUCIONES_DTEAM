@@ -3,6 +3,7 @@
     
 <head>
   {% load static %}
+  
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -10,12 +11,18 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  {% block logo %}
   <!-- Favicons -->
-  <link href="/media/imagenes/logo.png" rel="icon">
-  <link href="/media/imagenes/logo.png" rel="apple-touch-icon">
+  {% endblock logo %}
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{% static 'app/vendor/aos/aos.css' %}" rel="stylesheet">
@@ -30,33 +37,41 @@
   <link href="{% static 'app/css/style.css' %}" rel="stylesheet">
 
   <!-- font-awesome -->
+  <link rel="stylesheet" href="{% static 'app/font-awesome/css/all.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+  <style>
+    @font-face {
+      font-family: Ubuntu;
+      src: url(../static/app/fonts/ubuntu/Ubuntu-Regular.ttf)
+    }
+    
+    @font-face {
+      font-family: ADLaM Display;
+      src: url(../static/app/fonts/ADLaM_Display/ADLaMDisplay-Regular.ttf)
+    }
+
+    body {
+      font-family: ADLaM Display, Ubuntu !important;
+      font-weight: 400;
+    }
+  </style>
+
+  {% block extra_styles %}
+  {% endblock extra_styles %}
 
 </head>
 <body>
-    <!-- ======= Header ======= -->
+  <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a class="nav-link scrollto" href="#hero">SOLUCIONES DTEAM</a></h1>
+      <h1 class="logo me-auto"><a class="nav-link scrollto" href="#header">SOLUCIONES DTEAM</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
-          <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
-          <li><a class="nav-link   scrollto" href="#portfolio">Ejemplos</a></li>
-          <li><a class="nav-link scrollto" href="#team">Nuestro Equipo</a></li>
-          <li class="dropdown"><a href="#"><span>Enlaces externos</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="http://www.geic.cu/">GEIC</a></li>
-              <li><a href="https://www.uic.cu/">Union de informáticos de Cuba</a></li>
-              <li><a href="https://www.mincom.gob.cu/">Ministerio de comunicaciones</a></li>
-              <li><a href="https://www.entumovil.cu/">entuMovil</a></li>
-              <li><a href="https://www.desoft.cu/es">Desoft Nacional</a></li>
-            </ul>
-          </li>
-          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
-          <li><a class="getstarted scrollto" href="#about">Comencemos</a></li>
+          {% block nav_items %}
+          {% endblock nav_items %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -84,7 +99,7 @@
         &copy; 2024 Copyright <strong><span>SOLUCIONES DTEAM</span></strong>. Todos los derechos reservados.
       </div>
       <div class="credits">
-        Desarrollado por: <a href="https://t.me/Osliany">Osliany Figueiras</a>
+        Desarrollado por: <a href="https://t.me/Osliany">Osliani Figueiras Saucedo.</a>
       </div>
     </div>
 
