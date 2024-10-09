@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 
+{% block extra_styles %}
+  {% load static %}
+  <link href="{% static 'app/css/servicios.css' %}" rel="stylesheet">
+{% endblock extra_styles %}
+
 {% block logo %}
   <link href={{catalogo.logo.url}} rel="icon">
   <link href={{catalogo.logo.url}} rel="apple-touch-icon">
 {% endblock logo %}
 
-{% block extra_styles %}
-{% load static %}
-<link href="{% static 'app/css/servicios.css' %}" rel="stylesheet">
-{% endblock extra_styles %}
-
 {% block nav_items %}
-<li><a class="nav-link scrollto" href="{% url 'index' %}">Portada</a></li>
-<li><a class="nav-link scrollto" href="{% url 'servicios' 1 %}">Software como Servicio</a></li>
-<li><a class="nav-link scrollto" href="{% url 'servicios' 2 %}">Capacitación</a></li>
-<li><a class="nav-link scrollto" href="{% url 'servicios' 3 %}">Software como Producto</a></li>
-<li><a class="nav-link scrollto" href="{% url 'servicios' 0 %}">Todos</a></li>
+  <li><a class="nav-link scrollto" href="{% url 'index' %}">Portada</a></li>
+  <li><a class="nav-link scrollto" href="{% url 'servicios' 1 %}">Software como Servicio</a></li>
+  <li><a class="nav-link scrollto" href="{% url 'servicios' 2 %}">Capacitación</a></li>
+  <li><a class="nav-link scrollto" href="{% url 'servicios' 3 %}">Software como Producto</a></li>
+  <li><a class="nav-link scrollto" href="{% url 'servicios' 0 %}">Todos</a></li>
 {% endblock nav_items %}
 
 {% block content %}
@@ -34,7 +34,7 @@
             <img src="{{ servicio.imagen.url }}" alt="{{ servicio.nombre }}" class="img-fluid" data-aos="zoom-in" data-aos-delay="200">
             {% endif %}
             <p>{{ servicio.descripcion|truncatechars:100 }}</p>
-            <button style="font-size: small;" class="btn btn-info">Ver más <i class="fa fa-info-circle"></i></button>
+            <button style="font-size: small;" class="btn btn-info" onclick="window.location.href='{% url 'servicio-detail' servicio.id %}'">Ver más <i class="fa fa-info-circle"></i></button>
             <button style="font-size: small;" class="btn btn-dark">Solicitar <i class="fas fa-robot"></i></button>
           </div>
         </div>
@@ -70,7 +70,6 @@
 
   <div class="col-lg-3 col-md-6 footer-links">
     <h4>Redes Sociales <i class="fa fa-link"></i></h4>
-    <p>Síguenos en nuestras redes sociales para no perderte ni un detalle ;)</p>
     <div class="social-links mt-3">
     {% for red in contacto.redes_sociales.all %}
       <a href={{red.link}} class="{{red.clase}}"><i class="bx bxl-{{red.clase}}"></i></a>

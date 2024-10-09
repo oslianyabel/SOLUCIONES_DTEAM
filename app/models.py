@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class SobreNosotros(models.Model):
     parrafo = models.TextField()
@@ -41,16 +42,31 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nombre
     
-    
+
 class Servicio(models.Model):
     nombre = models.CharField(max_length=255)
     descripcion = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='imagenes/servicios', null=True, blank=True)
+    imagen2 = models.ImageField(upload_to='imagenes/servicios', null=True, blank=True)
+    imagen3 = models.ImageField(upload_to='imagenes/servicios', null=True, blank=True)
     activo = models.BooleanField(default=True)
+    votos = models.IntegerField(default=0)
+    puntos_promedio = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
 
     def __str__(self):
         return self.nombre
+    
+    
+class Comentario(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    texto = models.TextField()
+    fecha = models.DateField(auto_now_add=True)
+    aprobado = models.BooleanField(default=False)
+    servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.usuario} > {self.servicio}"
 
 
 class Equipo(models.Model):
