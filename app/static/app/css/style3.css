@@ -2,7 +2,35 @@ body {
   font-family: ADLaM Display, Ubuntu !important;
   font-weight: 400;
   color: #444444;
-  background-color:#F3F5FA;
+  background-color:#fff;
+}
+
+.portfolio-img {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.icon-box {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #37517e !important;
+  color: #fff;
+}
+.icon-box a {
+  color: #47B2E4 !important;
+}
+.icon-box i {
+  color: #fff !important;
 }
 
 a {

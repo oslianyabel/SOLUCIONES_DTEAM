@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.urls import reverse
 from django.contrib import messages
-from django.http import Http404
+from django.http import Http404, HttpResponseForbidden, JsonResponse
 from .forms import *
 from .models import *
 
@@ -12,7 +12,7 @@ def index(request):
     sn = SobreNosotros.objects.filter(activo=True)[0]
     pot = Potencialidad.objects.filter(activo=True)[:3]
     skills = Skill.objects.filter(activo=True)[:4]
-    cat = Categoria.objects.filter(activo=True)[:3]
+    cat = Categoria.objects.filter(activo=True)
     all = Servicio.objects.all()
     ej = [servicio for servicio in all if servicio.imagen and servicio.imagen.url != 'imagenes/servicios/nombre.jpg'][:9]
     team = Equipo.objects.filter(activo=True)[:4]
@@ -35,12 +35,13 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def servicios(request, cat):
-    if cat > 3 or cat < 1:
+def servicios(request, category_id):
+    try:
+        categoria = Categoria.objects.get(id = category_id)
+        serv = Servicio.objects.filter(categoria = categoria, activo=True).order_by('imagen')
+    except Categoria.DoesNotExist:
         serv = Servicio.objects.filter(activo=True).order_by('imagen')
-    else:
-        serv = Servicio.objects.filter(categoria = cat, activo=True).order_by('imagen')
-    
+        
     catalogo = Catalogo.objects.filter(activo=True)[0]
     contacto = Contacto.objects.filter(activo=True)[0]
     context = {
@@ -153,3 +154,31 @@ def opinion(request, service_id):
         'range_1_5': range(1, 6)
     }
     return render(request, 'opinion.html', context)
+
+
+def chatbot(request):
+    if request.method == 'POST':
+        msg = request.POST["Body"]
+        return JsonResponse({'text': msg, "status": "success"})
+        
+    catalogo = Catalogo.objects.filter(activo=True)[0]
+    context = {
+        "catalogo": catalogo,
+    }
+    return render(request, 'chatbot.html', context)
+
+
+def chatbot_service(request, service_id):
+    catalogo = Catalogo.objects.filter(activo=True)[0]
+    context = {
+        "catalogo": catalogo,
+    }
+    return render(request, 'chatbot.html', context)
+
+
+def chatbot_admin(request):
+    catalogo = Catalogo.objects.filter(activo=True)[0]
+    context = {
+        "catalogo": catalogo,
+    }
+    return render(request, 'chatbot.html', context)

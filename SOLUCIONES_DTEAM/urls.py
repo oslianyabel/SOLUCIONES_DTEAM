@@ -14,11 +14,14 @@ handler404 = custom_page_not_found_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('services/<int:cat>', views.servicios, name='servicios'),
+    path('services/<int:category_id>', views.servicios, name='servicios'),
     path('service/<int:service_id>', views.servicio_detail, name='servicio-detail'),
     path('login/<int:service_id>', views.login_view, name='login_view'),
     path('register/<int:service_id>', views.register_view, name='register_view'),
     path('opinion/<int:service_id>', views.opinion, name='opinion'),
+    path('chatbot/', views.chatbot, name='chatbot'),
+    path('chatbot_admin/', views.chatbot_admin, name='chatbot_admin'),
+    path('chatbot/<int:service_id>', views.chatbot_service, name='chatbot_service'),
     path('', views.index, name='index'),
 ]
 

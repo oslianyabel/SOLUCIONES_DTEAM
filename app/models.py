@@ -146,6 +146,7 @@ class Catalogo(models.Model):
     skills = models.ImageField(upload_to='imagenes/index')
     action = models.ImageField(upload_to='imagenes/index')
     logo = models.ImageField(upload_to='imagenes/index', null=True, blank=True)
+    fondo_chatbot = models.ImageField(upload_to='imagenes', null=True, blank=True)
     
     def __str__(self):
         return self.nombre

@@ -35,7 +35,6 @@
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
-
         <div class="row gy-4">
 
           <div class="col-lg-8">
@@ -60,7 +59,7 @@
                   </div>
                 {% endif %}
 
-                {% if not imagen and not imagen2 and not imagen3 %}
+                {% if not servicio.imagen and not servicio.imagen2 and not servicio.imagen3 %}
                   <img src="https://via.placeholder.com/1024" alt="Imagen no disponible.">
                 {% endif %}
 
@@ -70,6 +69,7 @@
           </div>
 
           <div class="col-lg-4">
+
             <div class="portfolio-info">
               <h3>{{servicio.nombre}}</h3>
               <ul>
@@ -92,16 +92,15 @@
               Agregar Opinión
               <img src="{% static 'app/svg/review.svg' %}" width="20" height="20" alt="Review">
             </button>
-            <button style="font-size: small; float: right" class="btn btn-dark" onclick="window.location.href=''">
+
+            <button style="font-size: small; float: right" class="btn btn-dark" onclick="window.location.href='{% url 'chatbot_service' servicio.id %}'">
               Iniciar Solicitud
               <img src="{% static 'app/svg/robot-wink-fill.svg' %}" width="20" height="20" alt="Review" style="filter: invert(100%);">
             </button>
-          
 
           </div>
 
         </div>
-
       </div>
     </section><!-- End Portfolio Details Section -->
 

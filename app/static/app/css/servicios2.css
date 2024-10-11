@@ -60,4 +60,31 @@
     margin-bottom: 20px;
     color: #ffffff;
   }
+
+  .services .tarjeta {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .services .card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .services .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .services .card-body > p {
+    flex-grow: 1;
+  }
+
+  .services .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+  }
   
