@@ -42,7 +42,7 @@
               {% for i in range_1_5 %}
                 <option value="{{i}}">
                   {% for _ in range_1_5 %}
-                    {% if forloop.counter <= i %}
+                    {% if forloop.counter >= i %}
                       <span>★</span>
                     {% endif %}
                   {% endfor %}

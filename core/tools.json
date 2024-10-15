@@ -1,0 +1,83 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "crear_generales",
+            "description": "Almacena las generales de una empresa y las asocia al usuario para poder crear solicitudes de contratos.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "nombre_empresa": {
+                        "type": "string",
+                        "description": "Nombre de la empresa a la que pertenece el usuario."
+                    },
+                    "dir": {
+                        "type": "string",
+                        "description": "Dirección de la empresa a la que pertenece el usuario."
+                    },
+                    "mun": {
+                        "type": "string",
+                        "description": "Municipio al que pertenece la empresa del usuario."
+                    },
+                    "prov": {
+                        "type": "string",
+                        "description": "Provincia a la que pertenece la empresa del usuario."
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "Correo electrónico de la empresa del usuario."
+                    },
+                    "tel": {
+                        "type": "string",
+                        "description": "Teléfono de la empresa del usuario."
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "description": "Nombre del usuario."
+                    },
+                    "apellidos": {
+                        "type": "string",
+                        "description": "Apellidos del usuario."
+                    },
+                    "cargo": {
+                        "type": "string",
+                        "description": "Cargo del usuario en su empresa."
+                    }
+                },
+                "required": ["nombre_empresa", "dir", "mun", "prov", "email", "tel", "nombre", "apellidos", "cargo"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "Energux",
+            "description": "Crea una solicitud de contrato para el servicio Energux.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "cantidad_usuarios": {"type": "integer", "description": "Cantidad de usuarios que trabajarán con el sistema."},
+                    "entidad_consolidadora": {"type": "boolean", "description": "¿Su empresa funciona como una entidad que consolida los datos de otras entidades?"},
+                    "entidad_subordinada": {"type": "boolean", "description": "¿Su empresa está subordinada a una entidad que consolida los datos de otras entidades?"},
+                    "monedas_trabajo": {"type": "array", "items": {"type": "string"}, "description": "Tipos de moneda con que trabaja la Empresa"},
+                    "centros_costo": {"type": "integer", "description": "Cantidad de centros de costo"},
+                    "tarjetas_combustibles": {"type": "integer", "description": "Cantidad de tarjetas de combustible"},
+                    "equipos": {"type": "integer", "description": "Cantidad de equipos"},
+                    "choferes": {"type": "integer", "description": "Cantidad de choferes"},
+                    "control_hojas_rutas": {"type": "boolean", "description": "¿Control de hojas de ruta?"},
+                    "plan_consumo_vehiculos": {"type": "boolean", "description": "¿Plan de consumo de vehículos?"},
+                    "modelo_portadores": {"type": "string", "description": "¿Utilización de los modelos para los Portadores(5073-CDA002)?"},
+                    "sistema_contable_automatizado": {"type": "boolean", "description": "¿Sistema contable automatizado?"},
+                    "sistema_contable_utilizado": {"type": "string", "description": "Sistema contable utilizado"},
+                    "portadores": {"type": "string", "description": "Portadores que utilizan. ej: Diésel, Gasolinas"},
+                    "plan_mensual_portador": {"type": "boolean", "description": "¿Hay definido un plan mensual para cada portador?"},
+                    "registro_contadores_electricos": {"type": "boolean", "description": "¿Tienen registro de contadores eléctricos?"},
+                    "registro_transformadores_electricos": {"type": "boolean", "description": "¿Tienen registro de transformadores eléctricos?"},
+                    "plan_consumo_electrico": {"type": "boolean", "description": "¿Tienen definidos planes de consumo eléctrico?"},
+                    "cuentas_control_combustible": {"type": "boolean", "description": "Descripción de las cuentas relacionadas con el control de combustible en la entidad"}
+                },
+                "required": ["cantidad_usuarios", "entidad_consolidadora", "entidad_subordinada", "monedas_trabajo", "centros_costo", "tarjetas_combustibles", "equipos", "choferes", "control_hojas_rutas", "plan_consumo_vehiculos", "modelo_portadores", "sistema_contable_automatizado", "sistema_contable_utilizado", "portadores", "plan_mensual_portador", "registro_contadores_electricos", "registro_transformadores_electricos", "plan_consumo_electrico", "cuentas_control_combustible"]
+            }
+        }
+    }
+]

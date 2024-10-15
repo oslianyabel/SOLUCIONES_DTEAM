@@ -79,8 +79,13 @@
     color: #007BFF;
     font-size: 12px;
     margin-top: 5px;
+    visibility: hidden;
   }
 
+  #estado-usuario {
+    position: relative;
+  }
+  
   #login-container {
     display: flex;
     justify-content: flex-end;
@@ -117,9 +122,27 @@
   }
   
   #chat-messages small {
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-top: 5px;
     font-size: 12px;
+    color: #ccc;
+  }
+
+  #chat-form button:hover{
+    color: #007BFF;
+  }
+  
+  #html-btn {
+    margin-right: 10px;
+    background-color: transparent;
     color: #fff;
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+
+  #html-btn:hover{
+    color: #007BFF;
   }
 
   @media (max-width: 768px){
@@ -154,5 +177,7 @@
 
     #chat-messages small {
       font-size: 10px;
+      margin-left: 10px;
+      margin-top: 5px;
     }
   }

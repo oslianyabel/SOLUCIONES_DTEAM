@@ -118,16 +118,20 @@ class Contacto(models.Model):
 class Conversacion(models.Model):
     usuario = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     fecha_inicio = models.DateTimeField(auto_now_add=True)
-    fecha_fin = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return f'Conversación con {self.usuario.username}'
+        return self.usuario.username
+    
+    @property
+    def cantidad_mensajes(self):
+        return self.mensaje_set.count()
 
 
 class Mensaje(models.Model):
     ENVIADO_POR_CHOICES = [
-        ('usuario', 'Usuario'),
-        ('bot', 'Bot'),
+        ('assistant', 'Asistente'),
+        ('user', 'Usuario'),
+        ('system', 'Sistema'),
     ]
     conversacion = models.ForeignKey(Conversacion, on_delete=models.CASCADE)
     texto = models.TextField()
@@ -135,7 +139,7 @@ class Mensaje(models.Model):
     fecha_envio = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Mensaje de {self.enviado_por} en conversación {self.conversacion.id}'
+        return f'{self.enviado_por} > {self.conversacion}'
 
 
 class Catalogo(models.Model):
@@ -150,4 +154,43 @@ class Catalogo(models.Model):
     
     def __str__(self):
         return self.nombre
+    
+    
+class Cliente_Pot(models.Model):
+    cliente = models.ForeignKey(User, verbose_name="Cliente Potencial", on_delete=models.CASCADE)
+    servicio = models.ForeignKey(Servicio, verbose_name="Servicio", on_delete=models.CASCADE)
+    fecha = models.DateField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.cliente}>{self.servicio}"
+    
+    
+class ChatBot(models.Model):
+    nombre = models.CharField(max_length=255, default="ChatBot")
+    facebook = models.CharField(max_length=255, default='<a href="https://www.facebook.com/SolucionesDTeam" class="facebook">Facebook <i class="bx bxl-facebook"></i></a>')
+    instagram = models.CharField(max_length=255, default='<a href="https://www.instagram.com/solucionesdteam/" class="instagram">Instagram <i class="bx bxl-instagram"></i></a>')
+    X = models.CharField(max_length=255, default='<a href="https://x.com/DesoftSsp" class="twitter">X <i class="bx bxl-twitter"></i></a>')
+    telegram = models.CharField(max_length=255, default='<a href="https://t.me/clientesDesoftSSP" class="telegram">Telegram <i class="bx bxl-telegram"></i></a>')
+    whatsapp = models.CharField(max_length=255, default='<a href="https://chat.whatsapp.com/GXwpDNRWs1F6NOM1Z2fzbc">Whatsapp <i class="bx bxl-whatsapp"></i></a></a>')
+    sys_prompt = models.TextField()
+    energux_prompt = models.TextField()
+    myros_prompt = models.TextField()
+    servidores_prompt = models.TextField()
+    fastos_pagus_prompt = models.TextField()
+    activo = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.nombre
   
+  
+class Generales(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE) 
+    nombre_empresa = models.CharField(max_length=255)
+    dir = models.CharField(max_length=255)
+    mun = models.CharField(max_length=255)
+    prov = models.CharField(max_length=255)
+    email = models.EmailField()
+    tel = models.CharField(max_length=20)
+    nombre = models.CharField(max_length=255)
+    apellidos = models.CharField(max_length=255)
+    cargo = models.CharField(max_length=255)
